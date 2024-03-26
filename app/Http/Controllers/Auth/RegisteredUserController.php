@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Major;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(Major $major): View
     {
-        return view('auth.register');
+        return view('auth.register')->with(['majors' => $major->get()]);
     }
 
     /**
@@ -37,8 +38,13 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
+            'icon' => 'icon.img',
             'name' => $request->name,
+            'nickname' => $request->nickname,
             'email' => $request->email,
+            'grade' => $request->grade,
+            'major_id' => $request->major,
+            'detail' => $request->detail,
             'password' => Hash::make($request->password),
         ]);
 
