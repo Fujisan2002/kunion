@@ -23,7 +23,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->integer('grade');
             $table->string('icon');
-            $table->foreignId('department_id')->constrained();
             $table->foreignId('major_id')->constrained();
             $table->string('detail');
             $table->timestamps();
