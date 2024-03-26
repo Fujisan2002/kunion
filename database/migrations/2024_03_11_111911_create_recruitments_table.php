@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('recruitments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('instrument_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('major_id')->constrained();
             $table->string('detail');
+            $table->integer('display');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
