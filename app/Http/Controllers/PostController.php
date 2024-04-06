@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Recruitment;
 
 class PostController extends Controller
 {
-    //
-
-    public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
+    public function index(Recruitment $recruitment)
     {
-        return $post->get();//$postの中身を戻り値にする。
+        return view('users.index')->with(['users' => $post->getByLimit()]);
+    }
+    
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);
+     //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
+    }
+    public function create()
+    {
+        return view('kunion.create');
     }
 }
+?>
