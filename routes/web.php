@@ -6,10 +6,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\IndexController;
 
 
-Route::get('/kunion/create', [PostController::class, 'create']);
 
+Route::middleware('auth')->group(function () {
+    Route::get('/kunion/create', [PostController::class, 'create']);
+    Route::post('/kunion/store', [PostController::class, 'store']);
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,5 +41,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('creats', CreateController::class);
 });
+
+Route::get('/index', [PostController::class, 'index'])->name('index');
 
 require __DIR__.'/auth.php';

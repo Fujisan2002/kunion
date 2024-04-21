@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('major_id')->constrained();
             $table->string('detail');
-            $table->integer('display');
             $table->timestamps();
             $table->softDeletes();
         });
