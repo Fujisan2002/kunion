@@ -11,7 +11,7 @@ use App\Http\Controllers\IndexController;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/kunion/create', [PostController::class, 'create']);
+    Route::get('/kunion/create', [PostController::class, 'create'])->name('kunion.create');
     Route::post('/kunion/store', [PostController::class, 'store']);
 });
 Route::get('/dashboard', function () {
