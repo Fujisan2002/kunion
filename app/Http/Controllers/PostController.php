@@ -40,7 +40,7 @@ class PostController extends Controller
         $input['user_id'] = Auth::id();
         $input['major_id'] = $request['major'];
         $recruitment->fill($input)->save();
-        return redirect("/dashboard");
+        return redirect("/index");
     }
     
     
